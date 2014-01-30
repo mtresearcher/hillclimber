@@ -13,8 +13,8 @@
 #include <fstream>
 
 // Modify initial temperature and decrement value for fast convergence!
-#define INITTEMP 5000
-#define DECREMENT 10
+#define INITTEMP 30
+#define DECREMENT 1
 using namespace std;
 
 class __HILL_CLIMB{
@@ -99,9 +99,9 @@ public:
 	}
 	void Optimize(){
 //		start with the current coordinates, change one dimensioned coordinate at one time and then evaluate the function
-		for(int i=0;i<1000;i++){
+		for(int i=0;i<30;i++){
+			double score=getScore();
 			for(int n=0;n<dimensions;n++){
-				double score=getScore();
 				if(score>max){
 					nextMonoStep(n);
 					max=score;
@@ -124,18 +124,15 @@ public:
 	}
 /*This is a simple function, change it according to your needs*/
 	double getScore(){
-/*		cerr<<"What is the score with these coordinates : ";
-		for(int i=0;i<dimensions;i++){
-			cerr<<curr_coordinates[i]<<" ";
+/*		for(int i=0;i<dimensions;i++){
+			cout<<curr_coordinates[i]<<" ";
 		}
-		cerr<<" ?\n";
 		double score;
 		cin>>score;
-		return score;*/
-
+		return score;
+*/
 // default function to test univariate function
-	//	return -1 * pow((curr_coordinates[0]-1),2);
-	
+//		return -1 * pow((curr_coordinates[0]-1),2);
 	
 // default function to test bi-variate function
 		return -1 * (pow(curr_coordinates[0],2) + pow(curr_coordinates[1],2));
